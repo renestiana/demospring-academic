@@ -29,18 +29,19 @@ public class StudentController {
     @PostMapping
     public ResponseEntity addStudent(@RequestBody Student student){
         studentService.addStudent(student);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+        return new ResponseEntity<>("Insert student with ID "+ student.getStudentId() +" succeed!", HttpStatus.CREATED);
     }
 
     @PutMapping
     public ResponseEntity updateStudent(@RequestBody Student student){
         studentService.updateStudent(student);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>("Update student with ID "+ student.getStudentId() +" succeed!", HttpStatus.OK);
     }
 
     @DeleteMapping("/{npm}")
     public ResponseEntity deleteStudent(@PathVariable String npm){
         studentService.deleteStudent(npm);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return new ResponseEntity<>("Delete student with ID "+ npm +" succeed!", HttpStatus.OK);
     }
 }
